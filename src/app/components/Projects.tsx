@@ -1,299 +1,253 @@
 import { motion } from "motion/react";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 
-const projects = [
+const PROJECTS = [
   {
-    number: "01",
+    num: "01",
     title: "AutoImageFormatter",
-    tagline: "Intelligent image processing at scale",
+    tagline: "Intelligent Cloud Image Processing",
     description:
-      "A full-stack image processing pipeline with automated format conversion, real-time optimization, and batch processing. Built for performance with a clean, intuitive UI.",
-    tech: ["React", "Node.js", "Sharp", "Express"],
-    highlights: [
-      "Batch process 100+ images simultaneously",
-      "Smart compression with quality preservation",
-      "Real-time progress tracking",
-    ],
-    accent: "sky",
+      "A cloud platform automating complex image processing, background removal, and face centering. Architected a scalable pipeline to handle high-throughput batch jobs.",
+    tech: ["React", "Node.js", "Express", "Vite", "Python"],
+    accent: "#FF2CF3",
+    accentDim: "rgba(255,44,243,0.08)",
+    accentBorder: "rgba(255,44,243,0.22)",
+    panelFrom: "rgba(255,44,243,0.06)",
+    panelTo: "rgba(255,44,243,0.01)",
+
   },
   {
-    number: "02",
+    num: "02",
+    title: "KickSlot",
+    tagline: "Turf-Booking Management Platform",
+    description:
+      "A full-featured turf-booking management platform with real-time availability and conflict detection. Built from the ground up to handle complex scheduling and user flows.",
+    tech: ["MongoDB", "Express", "React", "Node.js"],
+    accent: "#00E8FF",
+    accentDim: "rgba(0,232,255,0.08)",
+    accentBorder: "rgba(0,232,255,0.22)",
+    panelFrom: "rgba(0,232,255,0.06)",
+    panelTo: "rgba(0,232,255,0.01)",
+  },
+  {
+    num: "03",
+    title: "KTU S6 CCW Dashboard",
+    tagline: "Dynamic Study & Quiz Engine",
+    description:
+      "A dynamic study application and quiz engine. Engineered a Python ETL pipeline to parse unstructured PDF question banks into a JSON database, served via a high-performance SPA with real-time analytics.",
+    tech: ["Python", "JavaScript", "React", "Vite"],
+    accent: "#FF2CF3",
+    accentDim: "rgba(255,44,243,0.08)",
+    accentBorder: "rgba(255,44,243,0.22)",
+    panelFrom: "rgba(255,44,243,0.06)",
+    panelTo: "rgba(255,44,243,0.01)",
+
+  },
+  {
+    num: "04",
     title: "Celestial Compass",
-    tagline: "Real-time astronomical navigation",
+    tagline: "3D WebGL Astronomical Dashboard",
     description:
-      "An interactive star mapping app with live celestial data, orbital mechanics simulation, and event tracking. Powered by NASA's open data APIs and rendered with WebGL.",
-    tech: ["Three.js", "WebGL", "NASA API", "React"],
-    highlights: [
-      "Live star catalog with 100K+ entries",
-      "3D orbital mechanics simulation",
-      "Celestial event notifications",
-    ],
-    accent: "violet",
-  },
-  {
-    number: "03",
-    title: "PlaySpots",
-    tagline: "Smart venue booking for sports",
-    description:
-      "A full-featured venue booking platform with real-time availability, Stripe payment integration, and Google Calendar sync for sports facilities management.",
-    tech: ["Next.js", "MongoDB", "Stripe", "Google Calendar API"],
-    highlights: [
-      "Real-time booking with conflict detection",
-      "Secure Stripe payment processing",
-      "Calendar sync & SMS reminders",
-    ],
-    accent: "pink",
+      "A full-stack astronomical dashboard featuring an interactive 3D WebGL globe and localized cosmic event aggregation. Engineered a custom Express backend to aggregate data across multiple APIs while optimizing WebGL rendering hooks.",
+    tech: ["React", "Node.js", "Express", "Three.js"],
+    accent: "#00E8FF",
+    accentDim: "rgba(0,232,255,0.08)",
+    accentBorder: "rgba(0,232,255,0.22)",
+    panelFrom: "rgba(0,232,255,0.06)",
+    panelTo: "rgba(0,232,255,0.01)",
   },
 ];
-
-const accentColors: Record<string, { border: string; glow: string; text: string; bg: string }> = {
-  sky: {
-    border: "rgba(56,189,248,0.3)",
-    glow: "0 0 40px rgba(56,189,248,0.15)",
-    text: "#38bdf8",
-    bg: "rgba(56,189,248,0.08)",
-  },
-  violet: {
-    border: "rgba(139,92,246,0.3)",
-    glow: "0 0 40px rgba(139,92,246,0.15)",
-    text: "#a78bfa",
-    bg: "rgba(139,92,246,0.08)",
-  },
-  pink: {
-    border: "rgba(244,114,182,0.3)",
-    glow: "0 0 40px rgba(244,114,182,0.15)",
-    text: "#f472b6",
-    bg: "rgba(244,114,182,0.08)",
-  },
-};
 
 export function Projects() {
   return (
     <section id="projects" style={{ padding: "100px 0" }}>
       <div className="wrap">
-        {/* Section header */}
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.55 }}
           style={{ marginBottom: 64 }}
         >
-          <p className="section-label">Projects</p>
+          <span className="section-tag">Engineering</span>
           <h2
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(32px, 5vw, 48px)",
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
-              color: "#f0f2ff",
-              marginBottom: 16,
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "clamp(28px, 4.5vw, 48px)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              color: "var(--text-1)",
+              marginBottom: 12,
             }}
           >
-            Things I've built
+            Featured Projects
           </h2>
-          <p style={{ fontSize: 17, color: "#9ca3c4", maxWidth: 500 }}>
-            A selection of projects I'm proud of — each one solving a real problem
-            with clean code and great UX.
+          <p style={{ fontSize: 15, color: "var(--text-2)", maxWidth: 460 }}>
+            End-to-end products I've designed, engineered, and shipped.
           </p>
         </motion.div>
 
-        {/* Project cards */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          {projects.map((project, index) => {
-            const accent = accentColors[project.accent];
-            return (
-              <motion.div
-                key={project.title}
-                className="project-card"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+        {/* Cards */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+          {PROJECTS.map((p, i) => (
+            <motion.div
+              key={p.title}
+              className="project-card"
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: i * 0.08 }}
+            >
+              <div
+                className="proj-inner"
                 style={{
-                  borderColor: accent.border,
-                  boxShadow: "0 8px 40px rgba(0,0,0,0.3)",
+                  display: "grid",
+                  gridTemplateColumns: "280px 1fr",
+                  minHeight: 240,
                 }}
-                whileHover={{ boxShadow: `0 24px 64px rgba(0,0,0,0.5), ${accent.glow}` }}
               >
-                {/* Number decoration */}
-                <span className="project-number">{project.number}</span>
-
+                {/* Left — art panel */}
                 <div
+                  className="proj-glow-panel"
                   style={{
-                    padding: "40px",
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "48px",
-                    alignItems: "center",
+                    background: `linear-gradient(145deg, ${p.panelFrom} 0%, ${p.panelTo} 100%)`,
+                    borderRight: `1px solid ${p.accentBorder}`,
                   }}
-                  className="project-inner"
                 >
-                  {/* Left */}
-                  <div>
-                    <span
-                      style={{
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: 12,
-                        color: accent.text,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                        display: "block",
-                        marginBottom: 12,
-                      }}
-                    >
-                      {project.tagline}
-                    </span>
+                  {/* Decorative grid inside panel */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      backgroundImage: `linear-gradient(${p.accentBorder} 1px, transparent 1px), linear-gradient(90deg, ${p.accentBorder} 1px, transparent 1px)`,
+                      backgroundSize: "24px 24px",
+                      opacity: 0.35,
+                    }}
+                  />
+                  {/* Centre glow */}
+                  <div
+                    style={{
+                      width: 80, height: 80, borderRadius: "50%",
+                      background: `radial-gradient(circle, ${p.accent}33 0%, transparent 70%)`,
+                      filter: "blur(20px)",
+                      position: "absolute",
+                    }}
+                  />
+                  {/* Terminal number */}
+                  <span
+                    className="proj-number mono"
+                    style={{ color: p.accentBorder }}
+                  >
+                    {p.num}
+                  </span>
+                </div>
 
-                    <h3
-                      style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        fontSize: "clamp(24px, 3vw, 32px)",
-                        fontWeight: 700,
-                        letterSpacing: "-0.02em",
-                        color: "#f0f2ff",
-                        marginBottom: 16,
-                      }}
-                    >
-                      {project.title}
-                    </h3>
+                {/* Right — text */}
+                <div style={{ padding: "36px 40px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  {/* Tagline */}
+                  <span
+                    className="mono"
+                    style={{
+                      fontSize: 11,
+                      color: p.accent,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      display: "block",
+                      marginBottom: 10,
+                      textShadow: `0 0 12px ${p.accent}66`,
+                    }}
+                  >
+                    {p.tagline}
+                  </span>
 
-                    <p
-                      style={{
-                        fontSize: 15,
-                        color: "#9ca3c4",
-                        lineHeight: 1.7,
-                        marginBottom: 24,
-                      }}
-                    >
-                      {project.description}
-                    </p>
+                  <h3
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 800,
+                      fontSize: "clamp(22px, 2.5vw, 30px)",
+                      letterSpacing: "-0.025em",
+                      color: "var(--text-1)",
+                      marginBottom: 14,
+                    }}
+                  >
+                    {p.title}
+                  </h3>
 
-                    {/* Tech pills */}
-                    <div
-                      style={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        gap: 8,
-                        marginBottom: 28,
-                      }}
-                    >
-                      {project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="pill"
-                          style={{
-                            borderColor: accent.border,
-                            color: accent.text,
-                            background: accent.bg,
-                            fontSize: 11,
-                          }}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+                  <p
+                    style={{
+                      fontSize: 14,
+                      color: "var(--text-2)",
+                      lineHeight: 1.75,
+                      marginBottom: 22,
+                      maxWidth: 520,
+                    }}
+                  >
+                    {p.description}
+                  </p>
 
-                    {/* Links */}
-                    <div style={{ display: "flex", gap: 16 }}>
-                      <motion.button
-                        className="btn-outline"
-                        style={{ padding: "10px 20px", fontSize: 13, borderRadius: 10 }}
-                        whileHover={{ scale: 1.04 }}
-                        whileTap={{ scale: 0.96 }}
-                      >
-                        <Github size={15} />
-                        Source Code
-                      </motion.button>
-                      <motion.button
-                        className="btn-primary"
-                        style={{ padding: "10px 20px", fontSize: 13, borderRadius: 10 }}
-                        whileHover={{ scale: 1.04 }}
-                        whileTap={{ scale: 0.96 }}
-                      >
-                        <ExternalLink size={15} />
-                        Live Demo
-                      </motion.button>
-                    </div>
-                  </div>
-
-                  {/* Right — Highlights */}
-                  <div>
-                    <div
-                      style={{
-                        background: "rgba(4, 5, 15, 0.7)",
-                        border: `1px solid ${accent.border}`,
-                        borderRadius: 16,
-                        padding: "28px",
-                      }}
-                    >
-                      <p
+                  {/* Tech tags */}
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 28 }}>
+                    {p.tech.map((t) => (
+                      <span
+                        key={t}
                         style={{
-                          fontSize: 12,
-                          color: accent.text,
-                          fontWeight: 600,
-                          letterSpacing: "0.08em",
-                          textTransform: "uppercase",
-                          marginBottom: 20,
-                          fontFamily: "'JetBrains Mono', monospace",
+                          padding: "5px 12px",
+                          background: p.accentDim,
+                          border: `1px solid ${p.accentBorder}`,
+                          borderRadius: 6,
+                          fontFamily: "'Fira Code', monospace",
+                          fontSize: 11.5,
+                          color: p.accent,
+                          letterSpacing: "0.02em",
                         }}
                       >
-                        Key Features
-                      </p>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                        {project.highlights.map((item, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ opacity: 0, x: -16 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 + i * 0.08 }}
-                            style={{ display: "flex", alignItems: "flex-start", gap: 12 }}
-                          >
-                            <div
-                              style={{
-                                width: 20,
-                                height: 20,
-                                borderRadius: "50%",
-                                background: accent.bg,
-                                border: `1px solid ${accent.border}`,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                flexShrink: 0,
-                                marginTop: 1,
-                              }}
-                            >
-                              <ArrowRight size={10} color={accent.text} />
-                            </div>
-                            <span style={{ fontSize: 14, color: "#9ca3c4", lineHeight: 1.5 }}>
-                              {item}
-                            </span>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action buttons */}
+                  <div style={{ display: "flex", gap: 12 }}>
+                    <button
+                      className="btn-ghost"
+                      style={{ padding: "9px 18px", fontSize: 12, display: "flex", alignItems: "center", gap: 7 }}
+                    >
+                      <Github size={14} />
+                      Source Code
+                    </button>
+                    <button
+                      style={{
+                        display: "inline-flex", alignItems: "center", gap: 7,
+                        padding: "9px 18px",
+                        background: p.accentDim,
+                        border: `1px solid ${p.accentBorder}`,
+                        borderRadius: "var(--radius-md)",
+                        fontFamily: "'Fira Code', monospace",
+                        fontSize: 12,
+                        color: p.accent,
+                        cursor: "pointer",
+                        transition: "all 0.2s ease",
+                      }}
+                    >
+                      <ExternalLink size={14} />
+                      Live Demo
+                    </button>
                   </div>
                 </div>
-              </motion.div>
-            );
-          })}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
 
-      {/* Inline responsive style */}
       <style>{`
         @media (max-width: 768px) {
-          .project-inner {
-            grid-template-columns: 1fr !important;
-            padding: 28px !important;
-            gap: 24px !important;
-          }
-          .project-number {
-            font-size: 48px !important;
-            top: 16px !important;
-            right: 20px !important;
-          }
+          .proj-inner { grid-template-columns: 1fr !important; }
+          .proj-glow-panel { min-height: 160px !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        }
+        @media (max-width: 540px) {
+          .proj-inner > div:last-child { padding: 28px 24px !important; }
         }
       `}</style>
     </section>

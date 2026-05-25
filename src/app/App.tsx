@@ -15,9 +15,9 @@ export default function App() {
 
       <main style={{ position: "relative", zIndex: 1 }}>
         <Hero />
-        <About />
         <TechStack />
         <Projects />
+        <About />
         <Footer />
       </main>
     </div>

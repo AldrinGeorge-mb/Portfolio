@@ -1,338 +1,153 @@
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, Send, MapPin } from "lucide-react";
-import { useState } from "react";
+import { Github, Linkedin, Mail } from "lucide-react";
+
+const LINKS = [
+  { icon: Github, label: "GitHub", href: "https://github.com/aldringeorge-mb", text: "github.com/aldringeorge-mb" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/aldrin-george-a93a64267/", text: "linkedin.com/in/aldringeorge" },
+  { icon: Mail, label: "Email", href: "mailto:aldringeorge2904@gmail.com", text: "aldringeorge2904@gmail.com" },
+];
 
 export function Footer() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    window.location.href = `mailto:aldrin@example.com?subject=${subject}&body=${body}`;
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-  };
-
   return (
-    <footer id="contact" style={{ padding: "100px 0 60px" }}>
-      <div className="wrap">
-        {/* Section header */}
+    <footer id="contact" style={{ padding: "100px 0 56px", position: "relative" }}>
+      {/* Ambient glow */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0, left: "50%", transform: "translateX(-50%)",
+          width: 500, height: 200,
+          background: "radial-gradient(ellipse, rgba(0,232,255,0.06) 0%, transparent 70%)",
+          filter: "blur(40px)",
+          pointerEvents: "none",
+        }}
+      />
+
+      <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
+        {/* Top divider */}
+        <div className="divider" style={{ marginBottom: 72 }} />
+
+        {/* Terminal connect block */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{ textAlign: "center", marginBottom: 64 }}
+          style={{ textAlign: "center", marginBottom: 56 }}
         >
-          <p className="section-label" style={{ justifyContent: "center" }}>
-            Contact
+          {/* Prompt line */}
+          <p
+            className="mono term-prompt"
+            style={{ fontSize: "clamp(16px, 2.5vw, 22px)", marginBottom: 8 }}
+          >
+            <span className="user">root</span>
+            <span className="at">@</span>
+            <span className="host">aldrin</span>
+            <span className="path">:~#</span>
+            <span className="cmd"> connect</span>
+            <span className="cursor" style={{ marginLeft: 6 }} />
           </p>
-          <h2
+
+          <p
+            className="mono"
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(32px, 5vw, 52px)",
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
-              color: "#f0f2ff",
-              marginBottom: 16,
+              fontSize: 12,
+              color: "var(--text-3)",
+              letterSpacing: "0.08em",
+              marginTop: 12,
             }}
           >
-            Let's build something{" "}
-            <span className="gradient-text">together</span>
-          </h2>
-          <p style={{ fontSize: 17, color: "#9ca3c4", maxWidth: 480, margin: "0 auto" }}>
-            Have a project in mind? I'd love to hear about it. Send me a message
-            and let's make something great.
+            // open to full-time roles & freelance projects
           </p>
         </motion.div>
 
-        {/* Two-column contact layout */}
-        <div
+        {/* Social links */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, delay: 0.1 }}
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1.5fr",
-            gap: "48px",
-            alignItems: "start",
-            marginBottom: 80,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 14,
+            marginBottom: 72,
           }}
-          className="contact-grid"
         >
-          {/* Left — info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div
-              className="glass-card"
-              style={{ padding: "32px", borderColor: "rgba(139,92,246,0.2)" }}
-            >
-              <h3
+          {LINKS.map((link, i) => {
+            const Icon = link.icon;
+            return (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
                 style={{
-                  fontWeight: 700,
-                  fontSize: 18,
-                  color: "#f0f2ff",
-                  marginBottom: 24,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 14,
+                  padding: "14px 24px",
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border-1)",
+                  borderRadius: "var(--radius-md)",
+                  textDecoration: "none",
+                  transition: "all 0.25s ease",
+                  width: "100%",
+                  maxWidth: 420,
+                }}
+                whileHover={{
+                  borderColor: "rgba(0,232,255,0.3)",
+                  backgroundColor: "rgba(0,232,255,0.04)",
                 }}
               >
-                Get in touch
-              </h3>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-                {/* Email */}
-                <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                  <div
-                    style={{
-                      width: 42,
-                      height: 42,
-                      borderRadius: 12,
-                      background: "rgba(139,92,246,0.1)",
-                      border: "1px solid rgba(139,92,246,0.3)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#a78bfa",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <Mail size={18} />
-                  </div>
-                  <div>
-                    <p style={{ fontSize: 12, color: "#5b6285", marginBottom: 2 }}>Email</p>
-                    <a
-                      href="mailto:aldrin@example.com"
-                      style={{
-                        fontSize: 14,
-                        color: "#f0f2ff",
-                        textDecoration: "none",
-                        fontWeight: 500,
-                      }}
-                    >
-                      aldrin@example.com
-                    </a>
-                  </div>
-                </div>
-
-                {/* Location */}
-                <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                  <div
-                    style={{
-                      width: 42,
-                      height: 42,
-                      borderRadius: 12,
-                      background: "rgba(56,189,248,0.1)",
-                      border: "1px solid rgba(56,189,248,0.3)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#38bdf8",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <MapPin size={18} />
-                  </div>
-                  <div>
-                    <p style={{ fontSize: 12, color: "#5b6285", marginBottom: 2 }}>Location</p>
-                    <p style={{ fontSize: 14, color: "#f0f2ff", fontWeight: 500 }}>
-                      Kerala, India
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div
-                style={{
-                  height: 1,
-                  background: "rgba(139,92,246,0.15)",
-                  margin: "28px 0",
-                }}
-              />
-
-              {/* Social links */}
-              <p style={{ fontSize: 12, color: "#5b6285", marginBottom: 16 }}>
-                Find me online
-              </p>
-              <div style={{ display: "flex", gap: 12 }}>
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-btn"
-                  aria-label="GitHub"
-                >
-                  <Github size={20} />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-btn"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin size={20} />
-                </a>
-                <a
-                  href="mailto:aldrin@example.com"
-                  className="social-btn"
-                  aria-label="Email"
-                >
-                  <Mail size={20} />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right — form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div
-              className="glass-card"
-              style={{ padding: "32px", borderColor: "rgba(139,92,246,0.2)" }}
-            >
-              <form onSubmit={handleSubmit}>
                 <div
                   style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: 16,
-                    marginBottom: 16,
+                    width: 38, height: 38,
+                    borderRadius: 10,
+                    background: "var(--cyan-dim)",
+                    border: "1px solid var(--border-cyan)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "var(--cyan)", flexShrink: 0,
                   }}
                 >
-                  <div>
-                    <label
-                      style={{
-                        fontSize: 13,
-                        color: "#9ca3c4",
-                        display: "block",
-                        marginBottom: 8,
-                        fontWeight: 500,
-                      }}
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      className="contact-input"
-                      placeholder="Your name"
-                      required
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData((p) => ({ ...p, name: e.target.value }))
-                      }
-                    />
-                  </div>
-                  <div>
-                    <label
-                      style={{
-                        fontSize: 13,
-                        color: "#9ca3c4",
-                        display: "block",
-                        marginBottom: 8,
-                        fontWeight: 500,
-                      }}
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="contact-input"
-                      placeholder="your@email.com"
-                      required
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData((p) => ({ ...p, email: e.target.value }))
-                      }
-                    />
-                  </div>
+                  <Icon size={17} />
                 </div>
-
-                <div style={{ marginBottom: 24 }}>
-                  <label
-                    style={{
-                      fontSize: 13,
-                      color: "#9ca3c4",
-                      display: "block",
-                      marginBottom: 8,
-                      fontWeight: 500,
-                    }}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    className="contact-input"
-                    placeholder="Tell me about your project..."
-                    rows={5}
-                    required
-                    style={{ resize: "vertical", minHeight: 120 }}
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData((p) => ({ ...p, message: e.target.value }))
-                    }
-                  />
+                <div style={{ textAlign: "left" }}>
+                  <p className="mono" style={{ fontSize: 11, color: "var(--text-3)", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 2 }}>
+                    {link.label}
+                  </p>
+                  <p className="mono" style={{ fontSize: 13, color: "var(--text-1)" }}>
+                    {link.text}
+                  </p>
                 </div>
-
-                <motion.button
-                  type="submit"
-                  className="btn-primary"
-                  style={{ width: "100%", justifyContent: "center", fontSize: 15 }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {sent ? (
-                    "Message Sent! ✓"
-                  ) : (
-                    <>
-                      Send Message
-                      <Send size={16} />
-                    </>
-                  )}
-                </motion.button>
-              </form>
-            </div>
-          </motion.div>
-        </div>
+              </motion.a>
+            );
+          })}
+        </motion.div>
 
         {/* Bottom bar */}
-        <div className="divider" style={{ marginBottom: 32 }} />
+        <div className="divider" style={{ marginBottom: 28 }} />
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexWrap: "wrap",
-            gap: 16,
+            gap: 12,
           }}
         >
-          <p style={{ fontSize: 13, color: "#5b6285" }}>
-            © 2026 Aldrin George. Built with React & Vite.
+          <p className="mono" style={{ fontSize: 12, color: "var(--text-3)" }}>
+            © 2026 Aldrin George
           </p>
-          <p
-            style={{
-              fontSize: 13,
-              color: "#5b6285",
-              fontFamily: "'JetBrains Mono', monospace",
-            }}
-          >
-            Made with ❤️ in Kerala, India
+          <p className="mono" style={{ fontSize: 12, color: "var(--text-3)" }}>
+            // built with React + Vite
           </p>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .contact-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-        }
-      `}</style>
     </footer>
   );
 }

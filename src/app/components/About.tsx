@@ -1,248 +1,175 @@
 import { motion } from "motion/react";
-import { Code2, Lightbulb, Users, Rocket } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
-const values = [
-  {
-    icon: <Code2 size={22} />,
-    title: "Clean Code",
-    desc: "I write code that's readable, maintainable, and built to last — not just to ship fast.",
-    color: "violet",
-  },
-  {
-    icon: <Lightbulb size={22} />,
-    title: "Problem Solving",
-    desc: "I break down complex problems into elegant solutions that are both functional and performant.",
-    color: "sky",
-  },
-  {
-    icon: <Users size={22} />,
-    title: "Collaboration",
-    desc: "I believe the best work comes from cross-functional teams where everyone has a voice.",
-    color: "pink",
-  },
-  {
-    icon: <Rocket size={22} />,
-    title: "Ship Fast",
-    desc: "I move quickly without cutting corners — iterating rapidly based on user feedback.",
-    color: "violet",
-  },
+const ATTRIBUTES = [
+  { label: "Highly Collaborative", desc: "Thrives in cross-functional, fast-paced teams" },
+  { label: "Hackathon Experienced", desc: "Proven ability to ship fast under pressure" },
+  { label: "Continuous Learner", desc: "Always exploring new tech and best practices" },
 ];
-
-const colorMap: Record<string, { bg: string; border: string; text: string }> = {
-  violet: { bg: "rgba(139,92,246,0.1)", border: "rgba(139,92,246,0.3)", text: "#a78bfa" },
-  sky: { bg: "rgba(56,189,248,0.1)", border: "rgba(56,189,248,0.3)", text: "#38bdf8" },
-  pink: { bg: "rgba(244,114,182,0.1)", border: "rgba(244,114,182,0.3)", text: "#f472b6" },
-};
 
 export function About() {
   return (
     <section id="about" style={{ padding: "100px 0" }}>
       <div className="wrap">
-        {/* Two column intro */}
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          style={{ marginBottom: 60 }}
+        >
+          <span className="section-tag">About</span>
+          <h2
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "clamp(28px, 4.5vw, 48px)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              color: "var(--text-1)",
+            }}
+          >
+            About &amp; Impact
+          </h2>
+        </motion.div>
+
+        {/* Two-column */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "64px",
-            alignItems: "center",
-            marginBottom: 80,
+            alignItems: "start",
           }}
-          className="about-grid"
+          className="about-cols"
         >
-          {/* Left text */}
+          {/* Left — bio */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
           >
-            <p className="section-label">About Me</p>
-            <h2
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: "clamp(32px, 5vw, 48px)",
-                fontWeight: 700,
-                letterSpacing: "-0.02em",
-                color: "#f0f2ff",
-                marginBottom: 24,
-                lineHeight: 1.15,
-              }}
-            >
-              Passionate about turning ideas into{" "}
-              <span className="gradient-text">great software</span>
-            </h2>
+            {/* Mono label */}
             <p
+              className="mono"
               style={{
-                fontSize: 16,
-                color: "#9ca3c4",
-                lineHeight: 1.8,
+                fontSize: 12,
+                color: "var(--cyan)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
                 marginBottom: 20,
               }}
             >
-              I'm a full-stack engineer with a love for building things from scratch.
-              I enjoy working across the entire stack — from designing responsive UIs
-              to architecting backend systems and deploying to production.
+              &gt; bio.txt
+            </p>
+
+            <p
+              style={{
+                fontSize: 16,
+                color: "var(--text-2)",
+                lineHeight: 1.85,
+                marginBottom: 28,
+              }}
+            >
+              I am a Full-Stack Engineer with a track record of shipping end-to-end
+              web applications and production tools. I specialize in the MERN stack and custom
+              backend architectures, engineering scalable, user-centric products that solve
+              real-world problems.
             </p>
             <p
               style={{
                 fontSize: 16,
-                color: "#9ca3c4",
-                lineHeight: 1.8,
-                marginBottom: 32,
+                color: "var(--text-2)",
+                lineHeight: 1.85,
+                marginBottom: 36,
               }}
             >
-              When I'm not coding, I explore new technologies, contribute to side
-              projects, and stay curious about the latest in web development. My goal
-              is always the same: build something that makes people's lives easier.
+              I thrive in fast-paced collaborative environments and am driven to deliver
+              immediate business impact through clean code.
             </p>
 
-            {/* CTA */}
-            <div style={{ display: "flex", gap: 16 }}>
-              <a
-                href="mailto:aldrin@example.com"
-                className="btn-primary"
-                style={{ textDecoration: "none" }}
+            {/* Mini terminal block */}
+            <div
+              className="glass"
+              style={{ padding: "20px 22px" }}
+            >
+              <p className="mono term-prompt" style={{ fontSize: 13, lineHeight: 1.9 }}>
+                <span className="user">aldrin</span>
+                <span className="at">@</span>
+                <span className="host">portfolio</span>
+                <span className="path"> ~/skills</span>
+                <span> $ </span>
+                <span className="cmd">cat focus.txt</span>
+              </p>
+              <div
+                style={{
+                  marginTop: 12,
+                  paddingTop: 12,
+                  borderTop: "1px solid var(--border-1)",
+                }}
               >
-                Let's Talk
-              </a>
-              <a
-                href="#"
-                className="btn-outline"
-                style={{ textDecoration: "none" }}
-              >
-                Download CV
-              </a>
+                {["MERN Stack", "Product Architecture", "REST API Design", "Performance Optimization"].map((s) => (
+                  <p
+                    key={s}
+                    className="mono"
+                    style={{ fontSize: 12.5, color: "var(--text-2)", lineHeight: 1.8 }}
+                  >
+                    <span style={{ color: "var(--cyan)", marginRight: 8 }}>›</span>
+                    {s}
+                  </p>
+                ))}
+              </div>
             </div>
           </motion.div>
 
-          {/* Right — experience visual */}
+          {/* Right — attributes */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
           >
-            <div
-              className="glass-card"
+            <p
+              className="mono"
               style={{
-                padding: "32px",
-                borderColor: "rgba(139,92,246,0.2)",
-                boxShadow: "0 24px 60px rgba(0,0,0,0.3), 0 0 40px rgba(139,92,246,0.1)",
+                fontSize: 12,
+                color: "var(--cyan)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                marginBottom: 20,
               }}
             >
-              {/* Timeline items */}
-              <p
-                style={{
-                  fontSize: 12,
-                  color: "#5b6285",
-                  fontFamily: "'JetBrains Mono', monospace",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  marginBottom: 24,
-                }}
-              >
-                Journey
-              </p>
+              &gt; attributes.json
+            </p>
 
-              {[
-                {
-                  year: "2026",
-                  title: "Full-Stack Engineer",
-                  desc: "Building SaaS products with React, Node.js & MongoDB",
-                  active: true,
-                },
-                {
-                  year: "2024",
-                  title: "Frontend Developer",
-                  desc: "Crafted responsive UIs and interactive web experiences",
-                  active: false,
-                },
-                {
-                  year: "2023",
-                  title: "Started Coding",
-                  desc: "Fell in love with HTML, CSS & JavaScript",
-                  active: false,
-                },
-              ].map((item, i) => (
+            <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 32 }}>
+              {ATTRIBUTES.map((attr, i) => (
                 <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  key={attr.label}
+                  className="attr-card"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  style={{
-                    display: "flex",
-                    gap: 20,
-                    marginBottom: i < 2 ? 24 : 0,
-                    position: "relative",
-                  }}
                 >
-                  {/* Line */}
-                  {i < 2 && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        left: 19,
-                        top: 28,
-                        width: 2,
-                        height: "calc(100% + 24px)",
-                        background: "rgba(139,92,246,0.2)",
-                      }}
-                    />
-                  )}
-
-                  {/* Dot */}
                   <div
                     style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: "50%",
-                      background: item.active
-                        ? "linear-gradient(135deg, #7c3aed, #6366f1)"
-                        : "rgba(11,14,32,0.8)",
-                      border: `2px solid ${item.active ? "#8b5cf6" : "rgba(139,92,246,0.3)"}`,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                      zIndex: 1,
+                      width: 38, height: 38, flexShrink: 0,
+                      borderRadius: 10,
+                      background: "var(--cyan-dim)",
+                      border: "1px solid var(--border-cyan)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
                     }}
                   >
-                    <span
-                      style={{
-                        width: 8,
-                        height: 8,
-                        borderRadius: "50%",
-                        background: item.active ? "white" : "rgba(139,92,246,0.6)",
-                        display: "block",
-                      }}
-                    />
+                    <CheckCircle2 size={18} color="var(--cyan)" />
                   </div>
-
-                  <div style={{ paddingTop: 8 }}>
-                    <span
-                      style={{
-                        fontSize: 11,
-                        color: "#8b5cf6",
-                        fontFamily: "'JetBrains Mono', monospace",
-                        display: "block",
-                        marginBottom: 4,
-                      }}
-                    >
-                      {item.year}
-                    </span>
-                    <p
-                      style={{
-                        fontWeight: 600,
-                        color: "#f0f2ff",
-                        fontSize: 15,
-                        marginBottom: 4,
-                      }}
-                    >
-                      {item.title}
+                  <div>
+                    <p style={{ fontWeight: 600, fontSize: 15, color: "var(--text-1)", marginBottom: 3 }}>
+                      {attr.label}
                     </p>
-                    <p style={{ fontSize: 13, color: "#5b6285", lineHeight: 1.5 }}>
-                      {item.desc}
+                    <p className="mono" style={{ fontSize: 12, color: "var(--text-3)" }}>
+                      {attr.desc}
                     </p>
                   </div>
                 </motion.div>
@@ -250,84 +177,11 @@ export function About() {
             </div>
           </motion.div>
         </div>
-
-        {/* Values grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          style={{ marginBottom: 24 }}
-        >
-          <h3
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: 24,
-              fontWeight: 700,
-              color: "#f0f2ff",
-              marginBottom: 32,
-              textAlign: "center",
-            }}
-          >
-            How I work
-          </h3>
-        </motion.div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))",
-            gap: 20,
-          }}
-        >
-          {values.map((v, i) => {
-            const c = colorMap[v.color];
-            return (
-              <motion.div
-                key={v.title}
-                className="glass-card glass-card-hover"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                style={{ padding: 24 }}
-              >
-                <div
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 14,
-                    background: c.bg,
-                    border: `1px solid ${c.border}`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: c.text,
-                    marginBottom: 20,
-                  }}
-                >
-                  {v.icon}
-                </div>
-                <h4
-                  style={{
-                    fontWeight: 700,
-                    fontSize: 16,
-                    color: "#f0f2ff",
-                    marginBottom: 10,
-                  }}
-                >
-                  {v.title}
-                </h4>
-                <p style={{ fontSize: 14, color: "#5b6285", lineHeight: 1.65 }}>{v.desc}</p>
-              </motion.div>
-            );
-          })}
-        </div>
       </div>
 
       <style>{`
-        @media (max-width: 860px) {
-          .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+        @media (max-width: 820px) {
+          .about-cols { grid-template-columns: 1fr !important; gap: 48px !important; }
         }
       `}</style>
     </section>
